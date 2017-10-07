@@ -1,7 +1,7 @@
-# Basic Project
+# Jogged hours Project
 ## Core Concepts
 
-*Java application to cover core concepts.*
+*Java application which logs jogged hours into the system.*
 
 **Java 8**
 
