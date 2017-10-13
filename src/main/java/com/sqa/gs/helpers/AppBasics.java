@@ -51,43 +51,24 @@ public class AppBasics {
 		return scanner.nextLine();
 	}
 
-	public static double requestDouble(String question, double min, double max) {
-		double resultNum = 0;
-		String input = "";
-		boolean valid = false;
-		while (!valid) {
-			try {
-				// TODO Ask question
-				System.out.print(question + " ");
-				// TODO Get input String from user
-				input = scanner.nextLine();
-				// TODO Parse input String into int type
-				resultNum = Double.parseDouble(input);
-				// TODO Evaluate valid range?
-				if (resultNum < min) {
-					throw new RequestNumberUnderMinException();
-				}
-				if (resultNum > max) {
-					throw new RequestNumberOverMaxException();
-				}
-				// TODO Evaluate valid entry
-				valid = true;
-			} catch (NumberFormatException e) {
-				System.out.println("You have not entered a valid formatted number [" + input + "]");
-				/*
-				 * } catch (RequestNumberUnderMinException e) { System.out.
-				 * println("You have not entered a valid number higher than minimum ("
-				 * + min + ") - [" + input + "]"); } catch
-				 * (RequestNumberOverMaxException e) { System.out.
-				 * println("You have not entered a valid number lower than maximum ("
-				 * + max + ") - [" + input + "]");
-				 */
-			} catch (RequestNumberNotWithinRangeException e) {
-				System.out.println("You have not entered a valid number within range (" + min + " to " + max + ") - ["
-						+ input + "]");
+	public static boolean requestBoolean(String question) {
+		String input;
+		boolean isValid = false;
+		boolean response = true;
+		while (!isValid) {
+			System.out.print(question + " (Yes/No)");
+			input = scanner.nextLine();
+			if (input.trim().equalsIgnoreCase("yes")) {
+				isValid = true;
+				response = true;
+			} else if (input.trim().equalsIgnoreCase("no")) {
+				isValid = true;
+				response = false;
+			} else {
+				System.out.println("You did not respond to the question in the correct form: (Yes/No)");
 			}
 		}
-		return resultNum;
+		return response;
 	}
 
 	/**
